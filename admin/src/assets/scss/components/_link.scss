@@ -1,0 +1,34 @@
+@import '../custom';
+
+.link-right {
+  text-align: right;
+  margin-top: 1rem;
+  a {
+    color: $tertiary;
+    font-weight: 500;
+    &:hover {
+      color: $primary !important;
+    }
+  }
+}
+.link-center {
+  color: $secondary;
+  font-weight: 500;
+  padding-right: 3rem;
+  font-size: 18px !important;
+}
+span.link-center {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.resend-otp {
+  color: $secondary;
+  font-weight: 500;
+  border-bottom: 1px solid $secondary;
+  cursor: pointer;
+  &:hover {
+    color: $primary;
+    border-bottom: 1px solid $primary;
+  }
+}

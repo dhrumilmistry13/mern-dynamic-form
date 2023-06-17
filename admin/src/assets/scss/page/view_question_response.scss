@@ -1,0 +1,115 @@
+@use '../custom' as *;
+@use '../components/mixins' as *;
+@use '../components/typography' as *;
+
+.orders-response-container {
+  margin: 0 auto;
+  .question-heading {
+    font-size: 1.8rem;
+    @include breakpoint(tablet) {
+      font-size: $h3-font-size;
+    }
+  }
+  .inner-previous-icon {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 1rem;
+    @include breakpoint(mobile) {
+      display: block;
+    }
+  }
+  .questions {
+    margin-top: 1rem;
+
+    @include breakpoint(mobile) {
+      padding: 1rem;
+    }
+    a {
+      text-decoration: none;
+
+      &:focus,
+      :focus-visible {
+        box-shadow: none;
+      }
+      .download-icon {
+        path {
+          fill: $primary;
+        }
+      }
+    }
+    .download-link {
+      border: 2px solid $primary;
+      border-radius: 15px;
+      padding: 1rem;
+
+      @include breakpoint(mobile) {
+        padding: 0.5rem 1rem;
+        margin: 0.5rem 0;
+      }
+    }
+    .questions-card {
+      padding: 1rem 0 !important;
+      border-radius: 12px;
+      background: $card-bg-add;
+      border: 0.8px solid $box-shadow-card-add;
+    }
+    .questions-card-title {
+      padding: 1rem 2rem;
+      margin: 0 !important;
+      font-weight: $bold-font;
+      font-size: 1.5rem;
+      color: $primary !important;
+      @include breakpoint(mobile) {
+        padding: 0;
+        padding-top: 1rem;
+      }
+    }
+    .questions-lists {
+      padding: 0 2rem;
+      @include breakpoint(tablet) {
+        padding: 0.5rem 0 0 1rem;
+      }
+      .lists {
+        padding: 0 1rem;
+        hr:last-child {
+          display: none;
+        }
+      }
+      li {
+        margin: 0 1rem;
+        list-style-type: none;
+      }
+      .question-label {
+        font-size: $para-font-size;
+        color: $black;
+        font-weight: 500;
+        p {
+          margin-bottom: 0;
+        }
+        @include breakpoint(tablet) {
+          font-size: $h6-font-size;
+        }
+        span {
+          // color: $primary !important;
+          font-size: $h6-font-size;
+        }
+      }
+      .question-answer {
+        font-size: $para-font-size;
+        font-weight: $light-font;
+        color: $secondary;
+        margin-bottom: 0;
+        @include breakpoint(tablet) {
+          font-size: 14px;
+        }
+      }
+    }
+    .answer-img {
+      width: 100px;
+      img {
+        object-fit: contain;
+      }
+    }
+  }
+}

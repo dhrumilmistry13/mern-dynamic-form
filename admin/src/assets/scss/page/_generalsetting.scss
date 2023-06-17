@@ -1,0 +1,22 @@
+@use '../custom' as *;
+
+.preview-image svg {
+  margin-left: 1rem;
+  color: $error;
+}
+.settings {
+  margin: 0 auto;
+  width: 60%;
+  margin-bottom: 1.5rem;
+}
+
+@media only screen and (max-width: 991px) {
+  .settings {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .settings {
+    width: 100%;
+  }
+}

@@ -1,0 +1,20 @@
+@use "../custom";
+
+.accordion-button {
+    color: $primary !important;
+    background-color: #fff !important;
+    box-shadow: none;
+    font-weight: 600;
+}
+.accordion-button:not(.collapsed) {
+    color: $primary !important;
+    background-color: #fff !important;
+    box-shadow: none;
+    font-weight: 600;
+}
+.accordion-button:focus {
+    box-shadow: none !important;
+}
+.accordion-button:hover {
+    z-index: 0 !important;
+}

@@ -1,0 +1,12 @@
+.modal {
+  img {
+    max-width: 100%;
+    -o-object-fit: contain;
+    object-fit: contain;
+    top: 0;
+  }
+  .close-popup {
+    float: right;
+    font-size: 24px;
+  }
+}

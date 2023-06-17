@@ -1,0 +1,97 @@
+@import '../custom';
+
+table thead {
+  background-color: #f0f5f1;
+  color: $primary;
+  font-size: 18px;
+  white-space: nowrap;
+  th {
+    font-weight: 600;
+  }
+}
+table tbody {
+  font-weight: 500;
+  color: $tertiary;
+}
+.tablepagination {
+ 
+  text-align: center;
+}
+
+.filter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.filter-field-space {
+  margin: 1rem 0.5rem;
+}
+.filter-column {
+  width: 100%;
+  height: 45px;
+}
+.action_btn {
+  display: inline-flex;
+}
+.status-active {
+  color: $primary;
+  cursor: pointer;
+}
+.status-inactive {
+  color: $error;
+  cursor: pointer;
+}
+@mixin badge-color($bg, $color) {
+  background: $bg !important;
+  color: $color;
+}
+
+.booking-list {
+  .warning {
+    @include badge-color(#aea603, #fff);
+  }
+  .primary {
+    @include badge-color(#4d8481, #fff);
+  }
+  .rejected {
+    @include badge-color(#ff1a1a, #fff);
+  }
+
+  .completed {
+    @include badge-color(#36804e, #fff);
+  }
+  .no-show-both {
+    @include badge-color(#c30000, #fff);
+  }
+  .no-show-patient {
+    @include badge-color(#80b8b8, #fff);
+  }
+  .no-show-org {
+    @include badge-color(#e96e21, #fff);
+  }
+  .rescheduale-org {
+    @include badge-color(#b88ae9, #fff);
+  }
+  .cancel-by-sys {
+    @include badge-color(#ce6090, #fff);
+  }
+  .cancel-status {
+    @include badge-color(#d77171, #fff);
+  }
+}
+@media only screen and (max-width: 991px) {
+  .filter {
+    display: block;
+    float: initial;
+  }
+  .filter button {
+    float: right;
+  }
+  .filter-column {
+    width: 100%;
+  }
+}
+
+// @media only screen and (max-width: 767px) {
+
+// }

@@ -1,0 +1,21 @@
+@import '../custom';
+
+.page-not-found {
+  text-align: center;
+  .error-page-text {
+    color: $tertiary;
+    font-weight: 500;
+    font-size: 18px;
+  }
+}
+.not-found-image {
+  height: 50vh;
+  width: auto;
+  object-fit: cover;
+}
+@media only screen and (max-width: 767px) {
+  .not-found-image {
+    width: 100%;
+    height: auto;
+  }
+}

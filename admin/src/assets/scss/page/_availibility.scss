@@ -1,0 +1,663 @@
+@use '../custom' as *;
+@use '../components/mixins' as *;
+@use '../components/typography' as *;
+@use '../components/confirmpopup' as *;
+
+.add-items {
+  width: 30%;
+
+  @include breakpoint(mobile) {
+    width: 100%;
+  }
+}
+.intake-editor-card .intake-editor-heading {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0);
+  border: none;
+  border-bottom: inherit;
+  text-align: left;
+}
+.margin-text,
+.patient-text {
+  background: rgba(77, 132, 129, 0.15);
+  border: 1px solid $form-field;
+  border-radius: 10px;
+  padding: 10px;
+  display: inline-block;
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
+.card-heading-section {
+  margin: 0;
+}
+
+.table > :not(:last-child) > :last-child > * {
+  border-bottom-color: #dedede;
+}
+
+.input-error-message {
+  width: 100px;
+  // margin: 0.25rem 1em;
+  color: $error-Color !important;
+  text-align: center;
+  //word-break: break-all;
+}
+.button-rounded,
+.btn-primary {
+  &:active,
+  &:focus {
+    border-color: $primary !important;
+  }
+}
+
+.selected-day {
+  .fc-highlight {
+    margin: 0 5px !important;
+    background-color: $primary !important;
+  }
+  .fc-daygrid-day-top {
+    opacity: 1 !important;
+    .fc-daygrid-day-number {
+      color: $white !important;
+    }
+  }
+}
+.availability-booking {
+  .card-heading-section {
+    @include breakpoint(mobile) {
+      width: 100%;
+      display: block !important;
+    }
+    .button-rounded {
+      font-size: 16px;
+      &:active {
+        border-color: $primary !important;
+      }
+    }
+    .btns-container {
+      @include breakpoint(mobile) {
+        margin-top: 15px;
+      }
+    }
+
+    .btn-secondary {
+      background-color: #f5f5f5 !important;
+      color: #001b2b !important;
+      border-color: #f5f5f5 !important;
+      &:hover {
+        background-color: #e6e6e6 !important;
+        color: #001b2b !important;
+        border-color: #e6e6e6 !important;
+      }
+    }
+  }
+  .booking-experience {
+    transition: all 0.5s;
+    .auth-form-group {
+      width: 100%;
+      input {
+        border-radius: 60px;
+        height: 45px;
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        padding-left: 1.5rem;
+        border: 1px solid #ced4da !important;
+        background: rgba(77, 132, 129, 0.07);
+        margin: 0rem 0 0.5rem;
+        @include breakpoint(tablet) {
+          margin: 1rem 0 0.5rem;
+        }
+      }
+      .input-field-error {
+        border-color: rgb(148, 48, 48) !important;
+      }
+      .datepicker-calendar {
+        top: 12px;
+        position: absolute;
+        right: 13px;
+        @include breakpoint(tablet) {
+          top: 28px;
+        }
+      }
+    }
+    .form-check-input {
+      width: 25px;
+      margin-top: 0;
+      height: 25px;
+      margin-right: 5px;
+    }
+    .form-label {
+      margin-bottom: 0;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
+    .col-lg-4 {
+      align-items: center;
+      min-height: 76px;
+    }
+  }
+  .setWeekly-hour-wrapper {
+    position: relative;
+    .card-heading-section {
+      display: block;
+    }
+    .nav-tabs {
+      padding: 10px;
+      border-radius: 10px;
+      gap: 10px;
+      right: 20px;
+      position: absolute;
+      border: 1px solid rgba(0, 0, 0, 0.125) !important;
+      top: 20px;
+      @include breakpoint(tablet) {
+        position: relative;
+        right: 0px;
+        gap: 0px;
+      }
+
+      .nav-item {
+        @include breakpoint(tablet) {
+          width: 50%;
+        }
+        .nav-link {
+          font-weight: 500;
+          padding: 0.475rem 1.5rem;
+          text-transform: uppercase;
+          background: transparent;
+          color: #001b2b;
+          border-radius: 10px;
+          transition: all 0.6s;
+          border-color: transparent;
+          @include breakpoint(tablet) {
+            padding: 0.475rem 0.8rem;
+            width: 100%;
+          }
+          span {
+            font-size: 1rem;
+            @include breakpoint(tablet) {
+              font-size: 0.8rem;
+            }
+          }
+          &:hover {
+            color: #fff !important;
+            background: $primary !important;
+            span {
+              color: #fff !important;
+            }
+          }
+          &.active {
+            color: #fff !important;
+            background: $primary !important;
+            span {
+              color: #fff !important;
+            }
+          }
+        }
+      }
+    }
+    .tab-content {
+      margin-top: 60px;
+    }
+    .intake-editor-heading {
+      @include breakpoint(mobile) {
+        padding: 1rem;
+      }
+    }
+  }
+}
+.form-check-input:checked[type='radio'] {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='2' fill='%23fff'/%3E%3C/svg%3E");
+}
+.form-check-input:checked {
+  background-color: #4d8481 !important;
+  border-color: #4d8481 !important;
+}
+.form-check-label {
+  margin-bottom: 0;
+  font-weight: 700;
+}
+.secondary-add-button {
+  background-color: $primary !important;
+  font-size: 1rem;
+  font-weight: $normal-font;
+  color: $white;
+  border: 1px solid transparent !important;
+  padding: 0.6rem 1.3rem;
+  border-radius: 25px;
+  margin-bottom: 8px;
+  margin-left: 0.5rem;
+  svg {
+    color: $white;
+  }
+  &:hover {
+    color: $primary !important;
+    background: $transparent !important;
+    border: 1px solid $primary !important;
+    svg {
+      color: $primary;
+    }
+  }
+}
+.day-select {
+  border-radius: 60px;
+  height: 45px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding-left: 1.5rem;
+  background: rgba(77, 132, 129, 0.07);
+  margin: 0;
+}
+.secondary-remove-button {
+  font-size: $nav-link-font-size;
+  font-weight: $normal-font;
+  color: $white;
+  border: 1px solid $transparent;
+  padding: 0.7rem 1.3rem;
+  border-radius: 25px;
+  margin-bottom: 8px;
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+  &:hover {
+    color: $primary !important;
+    background: $transparent !important;
+    border: 1px solid $primary !important;
+  }
+}
+// ----------------------------  Listview-------------------------------------
+.unavailable-text {
+  height: 45px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Listview {
+  .form-check {
+    margin-top: 10px;
+  }
+
+  .checkbox-wrapper {
+    height: 25px;
+    display: flex;
+    align-items: center;
+  }
+  .form-control {
+    background: rgba(77, 132, 129, 0.07);
+    &:focus {
+      box-shadow: none;
+      border-color: $primary;
+    }
+  }
+  .form-check-input[type='checkbox'] {
+    width: 22px;
+    height: 22px;
+    margin-top: 0;
+    margin-right: 7px;
+  }
+  .button-rounded {
+    padding: 0.5rem 1rem;
+    &:active {
+      border-color: $primary !important;
+    }
+  }
+  select {
+    font-weight: 1.1rem;
+    font-weight: 700;
+  }
+}
+.working-text-center {
+  margin-bottom: 10px;
+}
+.form-field-error-text,
+.input-error-message {
+  font-weight: 600;
+  color: rgb(148, 48, 48) !important;
+}
+
+@media only screen and (min-width: 1366px) {
+  .paddinf-xl {
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+  }
+}
+@media only screen and (min-width: 2000px) {
+  .paddinf-xl {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .working-text-center .col-lg-2,
+  .working-text-center .col-lg-3,
+  .working-text-center .col-lg-1 {
+    margin-bottom: 10px;
+  }
+}
+@media only screen and (max-width: 300px) {
+  .setWeekly-hour-wrapper {
+    .nav-tabs {
+      .nav-item {
+        width: 100% !important;
+      }
+    }
+  }
+  .Listview {
+    .field-wrapr {
+      padding-bottom: 10px;
+      .col-4 {
+        width: 100%;
+        padding-bottom: 10px;
+      }
+      border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    }
+  }
+}
+
+// ----------------------------- Calender -----------------------------------//
+.Calender {
+  .fc-daygrid-day {
+    cursor: pointer;
+  }
+  .fc-more-link {
+    margin-left: 16px;
+  }
+  .fc-header-toolbar {
+    .fc-toolbar-chunk {
+      display: flex;
+      align-items: center;
+      .fc-button-group {
+        gap: 5px;
+      }
+      .fc-toolbar-title {
+        font-weight: 700;
+        color: $primary;
+      }
+      .fc-button {
+        background-color: #fff;
+
+        padding: 0.4rem 0.5rem;
+        border-color: #ced4da;
+        &:active {
+          background-color: $primary;
+          border-color: $primary;
+          color: #fff;
+          span {
+            color: #fff;
+          }
+        }
+      }
+      .fc-prev-button {
+        border-radius: 50%;
+        border-bottom-right-radius: 50% !important;
+        border-top-right-radius: 50% !important;
+      }
+      .fc-next-button {
+        border-radius: 50%;
+        border-bottom-left-radius: 50% !important;
+        border-top-left-radius: 50% !important;
+      }
+      &:nth-child(3) {
+        display: none;
+      }
+    }
+  }
+
+  .fc-col-header {
+    .fc-col-header-cell {
+      background-color: $primary;
+      padding: 0.5rem;
+      .fc-col-header-cell-cushion {
+        font-size: 1.2rem;
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+  .fc-daygrid-day {
+    .fc-event-draggable {
+      background-color: transparent;
+      border-color: transparent;
+      color: $primary;
+      .fc-event-main {
+        color: $primary;
+        font-weight: 500;
+        .fc-event-title-container {
+          text-align: center;
+          line-height: 13px;
+          .fc-event-title {
+            font-weight: 500;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+    .fc-daygrid-day-number {
+      font-weight: 600;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+    .fc-daygrid-event-dot {
+      border-color: $primary;
+    }
+  }
+  .fc-daygrid-day.fc-day-today {
+    background-color: rgba(77, 132, 129, 0.1) !important;
+  }
+  // popover
+  .fc-popover {
+    border-radius: 10px;
+    .fc-popover-body {
+      .fc-daygrid-event-harness {
+        .fc-h-event {
+          background-color: transparent;
+          border-color: transparent;
+          .fc-event-title-container {
+            color: $primary;
+          }
+        }
+      }
+    }
+
+    .fc-popover-header {
+      padding: 10px 5px;
+    }
+  }
+}
+
+//PopUp For specific Date
+
+.modal-specific {
+  .auth-input-field {
+    border-radius: 11px;
+    min-height: 100%;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding-left: 1.5rem;
+    background: rgba(77, 132, 129, 0.07);
+    &:focus,
+    &:active {
+      outline: 0;
+      box-shadow: none;
+    }
+  }
+
+  table thead {
+    background-color: transparent;
+  }
+
+  .fc-highlight {
+    margin: 0 3px;
+    border-radius: 50%;
+  }
+  .button-rounded {
+    font-size: 14px;
+  }
+  .day-select {
+    padding-left: 2px;
+  }
+  .secondary-remove-button,
+  .secondary-add-button {
+    padding: 0.7rem 1rem;
+  }
+  .secondary-add-button {
+    margin-left: 5px;
+    padding: 0.5rem 1rem;
+  }
+  .btn-secondary {
+    background-color: #f5f5f5 !important;
+    color: #001b2b !important;
+    border-color: #f5f5f5 !important;
+    &:hover {
+      background-color: #e6e6e6 !important;
+      color: #001b2b !important;
+      border-color: #e6e6e6 !important;
+    }
+  }
+  .working-text-center {
+    margin-bottom: 0px;
+    @include breakpoint(laptop) {
+      margin-bottom: 7px;
+    }
+  }
+  h4 {
+    font-size: 1.2rem;
+    min-height: 50px;
+    text-align: center;
+    @include breakpoint(laptop) {
+      min-height: unset;
+      margin-top: 20px;
+    }
+  }
+
+  .modal-dialog {
+    .modal-body {
+      padding: 1.5rem;
+    }
+    .fc-day-today {
+      background-color: transparent !important;
+    }
+    .fc-media-screen {
+      .fc-toolbar-chunk {
+        display: flex;
+        align-items: center;
+        .fc-button-group {
+          gap: 5px;
+        }
+        .fc-toolbar-title {
+          font-weight: 700;
+          color: $primary;
+          font-size: 16px;
+        }
+
+        .fc-button {
+          color: $primary;
+          background-color: #fff;
+          padding: 0.35rem 0.5rem;
+          box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.175);
+          border-color: #ced4da00;
+          span {
+            font-size: 1.2em;
+          }
+          &:focus,
+          &:hover,
+          &:active {
+            background-color: #fff;
+            border-color: #ced4da00;
+            box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.175) !important;
+            color: $primary;
+            span {
+              color: $primary;
+            }
+          }
+        }
+        .fc-prev-button {
+          border-radius: 50%;
+          border-bottom-right-radius: 50% !important;
+          border-top-right-radius: 50% !important;
+        }
+        .fc-next-button {
+          border-radius: 50%;
+          border-bottom-left-radius: 50% !important;
+          border-top-left-radius: 50% !important;
+        }
+      }
+    }
+  }
+
+  .fc-scrollgrid {
+    border: 0 !important;
+    th {
+      border: 0;
+      a {
+        text-decoration: none;
+      }
+    }
+    td {
+      border: 0;
+    }
+    tbody {
+      .fc-scrollgrid-sync-inner {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        a {
+          text-decoration: none;
+          color: rgb(148, 148, 148);
+        }
+      }
+    }
+    .selectedDate {
+      .fc-highlight {
+        background: $primary;
+        margin: 0 5px;
+        border-radius: 50%;
+      }
+      .fc-daygrid-day-number {
+        color: #fff !important;
+      }
+    }
+  }
+}
+.patient-modal {
+  .working-text-center {
+    .confirm-button {
+      padding: 0.55rem 1.5rem !important;
+      font-size: 15px;
+    }
+  }
+  .day-select {
+  }
+}
+
+@media (min-width: 992px) {
+  .working-text-center {
+    .col-lg-3 {
+      flex: 0 0 auto;
+      width: 26%;
+    }
+  }
+}
+@media (min-width: 1400px) {
+  .working-text-center {
+    .col-lg-3 {
+      width: 19%;
+    }
+  }
+}

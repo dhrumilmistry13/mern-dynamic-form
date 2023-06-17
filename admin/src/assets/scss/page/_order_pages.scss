@@ -1,0 +1,375 @@
+@use '../custom' as *;
+@use '../components/mixins' as *;
+@use '../components/typography' as *;
+
+body {
+  background-color: $orderbg;
+}
+
+.orderpage {
+  .card-single-item {
+    @include breakpoint(ipad-mini) {
+      margin-top: 1rem !important;
+    }
+  }
+  .body-card {
+    background: #fdfdfd;
+    border: 0.8px solid #d3d3d3;
+    border-radius: 12px;
+    margin: 0.5rem 1.5rem;
+  }
+  .mobile-col-reverse {
+    @include breakpoint(fix-size) {
+      flex-direction: column-reverse;
+    }
+  }
+  .item-align-center {
+    align-items: center;
+  }
+  .notes {
+    margin-bottom: 10px;
+    border-bottom: 1px solid $bordercolor;
+    padding-bottom: 10px;
+  }
+  .main-card-header {
+    background-color: $white;
+    padding: 15px;
+    .order-subtitle {
+      font-size: $h6-font-size;
+      font-weight: $regular-font;
+    }
+  }
+  .card-product-details {
+    border-bottom: 0.8px solid $bordercolor;
+    &:last-child {
+      border-bottom: transparent !important;
+    }
+    .order-imgs {
+      img {
+        object-fit: contain;
+      }
+    }
+  }
+  .order-heading {
+    font-weight: 600;
+    font-size: 28px;
+    white-space: nowrap;
+    padding: 1rem 1.5rem;
+
+    @include breakpoint(fix-size) {
+      font-size: 18px;
+    }
+  }
+  .notes {
+    p {
+      color: $primary;
+      margin-bottom: 0;
+    }
+    span {
+      color: $secondary;
+    }
+  }
+  .order-inner-card {
+    background: $buttoncardbg;
+    padding: 15px;
+  }
+  .inner-card-header {
+    h4 {
+      color: $form-field;
+      font-size: $h6-font-size;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    span {
+      color: $primary;
+      font-size: $h6-font-size;
+    }
+  }
+  .feature-single-item {
+    background: $primary;
+    border: 1px solid $primary;
+    border-radius: 63px;
+    color: $white;
+    padding: 5px 12px;
+    cursor: pointer;
+    // margin: 0px 5px;
+    font-size: $h6-font-size;
+    text-decoration: none;
+    display: inherit;
+    text-align: center;
+
+    a,
+    span {
+      color: $white;
+      text-decoration: none;
+    }
+  }
+  .order-view-detail {
+    word-break: break-word;
+  }
+  .view-link {
+    cursor: pointer;
+  }
+  .mobile-flex-d-row {
+    @include breakpoint(tablet) {
+      flex-direction: row-reverse;
+      align-items: center;
+    }
+  }
+  .order-details {
+    .order-id {
+      font-weight: 600;
+      font-size: $h6-font-size;
+      color: $form-field;
+    }
+    .order-detail-link {
+      color: $primary;
+      font-weight: 600;
+      font-size: $nav-link-font-size;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    @include breakpoint(fix-size) {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 12px;
+    }
+  }
+  .order-profile-details {
+    border-bottom: 0.8px solid $bordercolor;
+    padding: 15px 0rem;
+    h3 {
+      font-size: $para-font-size;
+    }
+
+    p {
+      font-size: $h6-font-size;
+      font-weight: 400;
+    }
+    .total-section {
+      font-size: $h6-font-size;
+      font-weight: 400;
+      line-height: 25px;
+    }
+    span {
+      font-weight: 600;
+    }
+  }
+  .single-product-details {
+    border-bottom: 0.8px solid $bordercolor;
+    padding: 15px 0rem;
+  }
+  .single-note {
+    border-bottom: 0.8px solid $bordercolor;
+    padding: 8px 0rem;
+
+    .note-text {
+      p {
+        font-size: $h6-font-size !important;
+      }
+    }
+    @include breakpoint(mobile) {
+      padding: 1rem;
+    }
+    svg {
+      color: $primary;
+      cursor: pointer;
+    }
+  }
+  .order-notes-row :last-child {
+    border-bottom: none !important;
+    align-items: center;
+  }
+  .order-product-details {
+    h3 {
+      color: $form-field;
+      font-weight: 400;
+      font-size: 28px;
+    }
+    p {
+      color: $form-field;
+      font-weight: 400;
+      font-size: $h6-font-size;
+    }
+    span {
+      color: $primary;
+      text-decoration-line: underline;
+      font-weight: $regular-font;
+      font-size: $nav-link-font-size;
+      padding-right: 1rem;
+    }
+  }
+  .order-details-note-section {
+    padding: 15px 0rem;
+
+    .order-note {
+      border-radius: 3px 3px 12px 12px;
+      padding: 10px 15px;
+
+      @include breakpoint(mobile) {
+        padding: 1rem 0.5rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+    .note-text {
+      font-size: $h6-font-size;
+      font-weight: 400;
+      padding: 1rem 0 0.5rem;
+
+      @include breakpoint(mobile) {
+        padding: 0;
+      }
+      p,
+      pre {
+        margin-bottom: 5px;
+        color: $secondary;
+        font-weight: $regular-font;
+        font-size: $para-font-size;
+      }
+      span {
+        color: $primary;
+        font-weight: $regular-font;
+        font-size: $nav-link-font-size;
+      }
+    }
+    .all-notes {
+      max-height: 450px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+        height: 30px;
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $primary;
+        height: 10px;
+        border-radius: 10px;
+      }
+    }
+    .notes-height {
+      max-height: 250px !important;
+    }
+    p {
+      font-size: $h6-font-size;
+      margin-bottom: 0;
+      font-weight: $normal-font;
+    }
+  }
+  .qty-price {
+    @include breakpoint(mobile) {
+      display: flex;
+      justify-content: space-between;
+    }
+    .qty-details {
+      word-break: break-word;
+      color: $form-field;
+      font-weight: 600;
+      font-size: $para-font-size;
+    }
+    .price-details {
+      color: $primary;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+  }
+  .user-profile-imgs {
+    .selfie-img {
+      border-radius: 50%;
+      object-fit: cover;
+      width: 120px;
+      height: 120px;
+
+      @include breakpoint(ipad-mini) {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }
+  .transaction-details {
+    padding: 15px 0rem;
+
+    h2 {
+      font-weight: 600;
+      font-size: 1.5rem;
+    }
+  }
+  .transaction-details-table {
+    margin: 2rem 0rem;
+
+    table {
+      thead {
+        background: $buttoncardbg;
+        tr {
+          white-space: break-spaces;
+          th {
+            font-weight: 600;
+            font-size: $h5-font-size;
+          }
+        }
+      }
+      tbody {
+        td {
+          font-weight: 400;
+          padding: 15px;
+          font-size: $h6-font-size;
+          color: $form-field;
+        }
+      }
+      .transaction-type {
+        color: $primary;
+      }
+      .approve-order {
+        color: $approve-text;
+        background-color: $approve-bg;
+        border: 1px solid $approve-border;
+        padding: 5px 15px;
+        border-radius: 63px;
+      }
+      .refund-order {
+        color: $refund-text;
+        background-color: $refund-bg;
+        border: 1px solid $refund-border;
+        padding: 5px 15px;
+        border-radius: 63px;
+      }
+      .ordered-order {
+        color: $primary;
+        background-color: $buttoncardbg;
+        border: 1px solid $buttoncardbg;
+        padding: 5px 15px;
+        border-radius: 63px;
+      }
+      .rejected-order,
+      .failed-order {
+        color: $error-text;
+        background-color: $error-bg;
+        border: 1px solid $error-border;
+        padding: 5px 15px;
+        border-radius: 63px;
+      }
+    }
+  }
+}
+.card-head-caption {
+  position: relative;
+  .add-caption {
+    position: absolute;
+    background-color: #fff;
+    top: -26px;
+    padding: 5px 10px 6px 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.175);
+  }
+}

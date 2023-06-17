@@ -1,0 +1,19 @@
+@use './custom';
+
+@import './components/button';
+@import './components/typography';
+@import './section/header';
+@import './section/sidebar';
+@import './components/navlink';
+@import './components/link';
+@import './components/table';
+@import './components/tab';
+@import './components/input';
+@import './components/accordion';
+@import './components/card';
+@import './components/dropzone';
+@import './components/modal';
+@import './components/mixins';
+@import './custom';
+
+@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
