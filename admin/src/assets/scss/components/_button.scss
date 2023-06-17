@@ -1,0 +1,106 @@
+@use '../custom' as *;
+
+.primary-button {
+  text-align: center;
+  margin-top: 1rem !important;
+  margin-bottom: 3rem;
+  button {
+    background-color: $secondary;
+    border: 1px solid $secondary;
+    font-size: 18px;
+    color: #fff !important;
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $secondary-hover;
+      border: 1px solid $secondary-hover;
+    }
+  }
+}
+
+button {
+  font-weight: 700 !important;
+}
+.btn-primary {
+  color: #fff !important;
+  margin: 0.2rem 0.5rem;
+}
+.table-primary-button {
+  background-color: $secondary !important;
+  border: 1px solid $secondary !important;
+  margin: 0px 5px;
+  color: white !important;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $secondary-hover !important;
+    border: 1px solid $secondary-hover !important;
+  }
+}
+.table-delete-button {
+  background-color: $error !important;
+  border: 1px solid $error !important;
+  margin: 0px 5px;
+  color: white !important;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $error-hover !important;
+    border: 1px solid $error-hover !important;
+  }
+}
+.table-add-button {
+  button {
+    background-color: $secondary !important;
+    border: 1px solid $secondary !important;
+    color: white;
+    text-align: center;
+    height: 45px;
+    &:hover {
+      color: white;
+    }
+  }
+}
+.upload-button {
+  background-color: transparent !important;
+  color: $secondary !important;
+  border-color: $secondary !important;
+  border-radius: 5px !important;
+  margin-left: 1.5rem;
+}
+.inner-action-button {
+  background-color: transparent !important;
+  color: $secondary !important;
+  border-color: $secondary !important;
+  border-radius: 5px !important;
+  margin-left: 1.5rem;
+}
+.secondary-add-button {
+  background-color: transparent !important;
+  color: $secondary !important;
+  border-color: $secondary !important;
+  border-radius: 5px !important;
+  margin: 0.2rem 0.5rem;
+}
+.secondary-remove-button {
+  background-color: transparent !important;
+  color: $error !important;
+  border-color: $error !important;
+  border-radius: 5px !important;
+  margin: 0.2rem 0.5rem;
+}
+.btn:disabled {
+  background-color: $disabled-btn !important;
+  color: $disabled-text !important;
+  border-color: transparent !important;
+  border-radius: 5px !important;
+  margin: 0.2rem 0.5rem;
+  height: 45px;
+}
+
+@media only screen and (max-width: 991px) {
+  .table-add-button {
+    display: flex;
+    float: right;
+  }
+}

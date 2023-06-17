@@ -1,0 +1,100 @@
+
+// media query breakpoints for responsiveness
+
+@mixin breakpoint($point) {
+    @if $point ==small-devices {
+      @media screen and (max-width: 320px) {
+        @content;
+      }
+    }
+  
+    @if $point ==landscapedevices {
+      @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2) {
+        @content;
+      }
+    }
+  
+    @if $point ==landscapesmall {
+      @media only screen and (min-device-width: 412px) and (max-device-height: 915px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3.5) {
+        @content;
+      }
+    }
+  
+    @if $point ==extrasmalllandscapedevices {
+      @media only screen and (min-device-width: 393px) and (max-device-height: 851px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2.75) {
+        @content;
+      }
+    }
+  
+    @if $point ==smalllandscapeiphone {
+      @media only screen and (min-device-width: 390px) and (max-device-height: 844px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3) {
+        @content;
+      }
+    }
+  
+    @if $point ==verysmallandscape {
+      @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2) {
+        @content;
+      }
+    }
+  
+    @else if $point ==between-mobile {
+      @media screen and (max-width: 426px) {
+        @content;
+      }
+    }
+  
+    @else if $point ==mobile {
+      @media screen and (max-width: 576px) {
+        @content;
+      }
+    }
+  
+    @else if $point ==tablet {
+      @media screen and (max-width: 768px) {
+        @content;
+      }
+    }
+  
+    @else if $point ==fix-size {
+      @media screen and (max-width: 767px) {
+        @content;
+      }
+    }
+  
+    @else if $point ==ipad-mini {
+      @media screen and (max-width: 992px) {
+        @content;
+      }
+    }
+  
+    @else if $point ==ipad {
+      @media screen and (max-width: 1024px) {
+        @content;
+      }
+    }
+  
+    @else if $point ==laptop {
+      @media screen and (max-width: 1200px) {
+        @content;
+      }
+    }
+  
+    @else if $point ==laptoplarge {
+      @media screen and (max-width: 1224px) {
+        @content;
+      }
+    }
+  
+    @else if $point ==desktop {
+      @media screen and (max-width: 1400px) {
+        @content;
+      }
+    }
+  
+    @else if $point ==largescreens {
+      @media screen and (max-width: 1824px) {
+        @content;
+      }
+    }
+  }

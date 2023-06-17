@@ -1,0 +1,81 @@
+@use '../custom' as *;
+
+.navbar-section {
+  padding: 0px !important;
+  .container-section {
+    padding: 0px !important;
+    background-color: #fff;
+    box-shadow: 0 0.125rem 0.25rem rgb(66 66 66 / 8%) !important;
+  }
+}
+.dashboard-logo {
+  padding: 0px !important;
+  width: 13.4rem;
+  img {
+    height: 50px;
+    width: auto;
+  }
+}
+.header-setting-menu {
+  display: flex;
+  .desktop-login-name {
+    margin-right: 10px;
+    margin-top: 7px;
+    font-weight: 500;
+    color: $tertiary;
+  }
+  .profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    overflow: hidden;
+  }
+  a::after {
+    display: none;
+  }
+  .dropdown-menu {
+    left: -150px !important;
+    margin-top: 1.125rem !important;
+    z-index: 99999;
+  }
+  .mobile-login-name {
+    display: none;
+  }
+  .setting-items a {
+    color: #424242 !important;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .dashboard-toggle-btn {
+    display: none;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .header-setting-menu {
+    margin-top: 5px;
+    .desktop-login-name {
+      margin-top: 10px;
+    }
+    .dashboard-toggle-btn {
+      display: block;
+      margin-top: 10px;
+      margin-right: 15px;
+    }
+  }
+}
+@media only screen and (max-width: 767px) {
+  .header-setting-menu {
+    .desktop-login-name {
+      display: none;
+    }
+    .mobile-login-name {
+      display: block;
+      text-align: center;
+    }
+    .dashboard-toggle-btn {
+      display: block;
+      margin-top: 10px;
+      margin-right: 15px;
+    }
+  }
+}

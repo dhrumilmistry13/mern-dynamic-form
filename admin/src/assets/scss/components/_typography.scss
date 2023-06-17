@@ -1,0 +1,101 @@
+@use "../custom" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+// @font-face {
+//     font-family: "Montserrat";
+//     src: local("Montserrat"),
+//         url(../../fonts/Montserrat-Bold.ttf) format("truetype");
+//     font-weight: 700;
+// }
+// @font-face {
+//     font-family: "Montserrat";
+//     src: local("Montserrat"),
+//         url(../../fonts/Montserrat-Medium.ttf) format("truetype");
+//     font-weight: 500;
+// }
+// @font-face {
+//     font-family: "Montserrat";
+//     src: local("Montserrat"),
+//         url(../../fonts/Montserrat-SemiBold.ttf) format("truetype");
+//     font-weight: 600;
+// }
+// @font-face {
+//     font-family: "Montserrat";
+//     src: local("Montserrat"),
+//         url(../../fonts/Montserrat-Light.ttf) format("truetype");
+//     font-weight: 400;
+// }
+
+body {
+    font-family: "Montserrat" !important;
+}
+
+// font sizes
+// link-font-size
+$nav-link-font-size: 12px;
+
+// h1-font-size
+$h1-font-size: 48px;
+// h2-font-size
+$h2-font-size: 38px;
+// h3-font-size
+$h3-font-size: 32px;
+// h4-font-size
+$h4-font-size: 22px;
+// h5-font-size
+$h5-font-size: 16px;
+// h6-font-size
+$h6-font-size: 14px;
+
+// para-font-size
+$para-font-size: 18px;
+
+// font-weight styles
+// bold fonts
+$bold-font: 800;
+
+// normal fonts
+$normal-font: 700;
+
+// light fonts
+$light-font: 400;
+
+// regular fonts weight
+$regular-font: 500;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+strong {
+    font-family: "Montserrat" !important;
+}
+h1 {
+    color: $primary;
+    font-size: 32px !important;
+    margin: 1.5rem 0rem !important;
+    font-weight: 700 !important;
+}
+.page-heading-center {
+    text-align: center;
+}
+.page-heading-left {
+    text-align: left;
+}
+.page-sub-heading {
+    text-align: center;
+    font-weight: 500;
+    color: $sub-heading;
+    font-size: 18px;
+}
+.Toastify__toast-body {
+    font-family: "Montserrat";
+    font-weight: 500;
+    color: $tertiary;
+}

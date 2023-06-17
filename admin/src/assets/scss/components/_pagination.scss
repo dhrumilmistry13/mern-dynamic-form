@@ -1,0 +1,33 @@
+@use '../custom' as *;
+@use './mixins' as *;
+@use './typography' as *;
+
+.pagination-tabs {
+  text-align: end;
+  padding: 1.25rem;
+  .pagination-button {
+    background: none;
+    border: none;
+    padding: 0 0.5rem;
+    color: $secondary !important;
+    font-weight: $light-font !important;
+    font-size: $h6-font-size;
+
+    &:disabled {
+      svg {
+        color: #ddd;
+      }
+    }
+  }
+  .active-page {
+    margin: 0 0.5rem;
+    background: $primary;
+    border-radius: 50%;
+    border: none;
+    color: $white;
+    padding: 0 0.45rem;
+    text-align: center;
+    font-weight: $light-font !important;
+    font-size: $h6-font-size;
+  }
+}

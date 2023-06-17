@@ -1,0 +1,125 @@
+@import '../custom';
+
+.form-field {
+  width: 326px !important;
+  height: 45px !important;
+}
+.css-ackcql {
+  display: flex !important;
+}
+.form-field-height {
+  height: 45px !important;
+}
+.css-1s2u09g-control,
+.css-1insrsq-control,
+.date-picker,
+.css-1pahdxg-control,
+.css-319lph-ValueContainer {
+  width: 100% !important;
+  min-height: 45px !important;
+}
+.css-319lph-ValueContainer {
+  height: 45px !important;
+}
+.contry-code .css-1s2u09g-control,
+.css-1pahdxg-control,
+.contact-number {
+  width: 100% !important;
+  min-height: 45px !important;
+}
+.form-group-field {
+  width: 326px !important;
+  min-height: 45px !important;
+}
+
+.form-check-input:focus {
+  box-shadow: none;
+}
+
+.form-field-error {
+  border: 1px solid $error !important;
+}
+.form-select-error .css-1s2u09g-control {
+  border-color: $error !important;
+}
+
+.form-field-success {
+  border: 1px solid $success !important;
+}
+.form-select-success .css-1s2u09g-control {
+  border-color: $success !important;
+}
+.form-field-error-text {
+  color: $error !important;
+  font-weight: 500 !important;
+}
+.field-label {
+  font-size: 18px;
+  color: $tertiary;
+  font-weight: 500 !important;
+  &-top {
+    margin-top: 1rem;
+  }
+}
+.date-picker-label {
+  padding: 0;
+  margin: 0px 0.5rem;
+}
+.form-select:focus {
+  box-shadow: unset !important;
+  border-color: $secondary !important;
+}
+.form-control:focus {
+  box-shadow: unset !important;
+  border-color: $secondary !important;
+  caret-color: $secondary;
+}
+input:focus ~ span {
+  border-color: $secondary !important;
+}
+::placeholder {
+  font-weight: 500;
+}
+
+.form-check {
+  display: inline-block !important;
+}
+.ml-5 {
+  margin-left: 5px;
+}
+
+.form-field-warning-text {
+  color: $waring-text !important;
+  font-weight: 500 !important;
+}
+.inner-group-box {
+  height: 45px;
+}
+.map-areas {
+  .alert {
+    background-color: $area-box;
+    color: $view-text;
+    font-weight: 500;
+  }
+}
+.custom-check {
+  .form-check-label,
+  .form-check-input {
+    opacity: 100 !important;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .form-field {
+    width: 100% !important;
+  }
+}
+
+.edit-org .form-switch{
+  gap: 5px ;
+  display:flex !important;
+  align-items: center;
+}
+.edit-org #custom-switch.form-check-input{
+  width: 40px;
+  height: 24px;
+}

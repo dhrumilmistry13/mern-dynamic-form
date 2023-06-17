@@ -1,0 +1,28 @@
+@use '../custom';
+
+.card {
+  .card-header {
+    background-color: #fff;
+    color: $primary;
+    padding: 1rem;
+  }
+  .card-title {
+    margin-bottom: 0px;
+    font-weight: 700;
+  }
+  color: $tertiary !important;
+  font-weight: 500;
+  span {
+    color: $view-text;
+  }
+  .divider {
+    width: 4%;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .card {
+    .divider {
+      width: 8.33333333%;
+    }
+  }
+}

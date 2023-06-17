@@ -1,0 +1,18 @@
+@import '../custom';
+
+.tab-navigation {
+  margin: 1.5rem 0rem !important;
+  .nav-item {
+    margin-right: 20px;
+    a {
+      text-decoration: none;
+      font-weight: 400;
+      color: $tertiary;
+    }
+  }
+  .active {
+    border-bottom: 3px solid #1176d4;
+    font-weight: bold !important;
+  }
+}
+

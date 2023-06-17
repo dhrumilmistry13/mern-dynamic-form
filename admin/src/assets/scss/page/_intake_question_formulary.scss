@@ -1,0 +1,151 @@
+@use '../custom' as *;
+@use '../components/mixins' as *;
+@use '../components/typography' as *;
+@use '../components/confirmpopup' as *;
+
+/** Intake and Question Formulary **/
+.question_formulary_intake {
+  .card-search-header {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  .step-flex {
+    justify-content: space-between;
+
+    .edit-delete-icon {
+      margin: 1.5rem 1rem !important;
+      float: right;
+      .icons {
+        display: flex;
+      }
+    }
+
+    .instruction {
+      font-size: 14px;
+      color: $primary;
+    }
+
+    .form-field-question {
+      padding: 0.35rem;
+      padding-left: 0.5rem;
+      width: 100%;
+      h3 {
+        font-weight: bold;
+        font-size: 24px;
+      }
+    }
+
+    .dynamic-option {
+      min-width: 218px;
+      min-height: 33px;
+      margin-bottom: 0.5rem;
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid #dedede;
+      font-weight: 400;
+      @include breakpoint(mobile) {
+        min-width: 170px;
+        max-height: 34px;
+      }
+    }
+    input[type='text'].dynamic-option::-webkit-input-placeholder {
+      color: $primary;
+      font-weight: bold;
+      font-size: 15px;
+      line-height: 135%;
+    }
+    .remove-field {
+      align-self: center;
+      padding-left: 0.5rem;
+    }
+  }
+
+  // DropDown
+  .dropdown-add-more {
+    max-width: 320px;
+    min-height: 60px;
+    padding: 0.5rem 1.5rem;
+    margin: 1rem 2rem;
+    border-radius: 12px;
+    border: 2px solid $primary;
+    font-weight: bold;
+    &:focus {
+      box-shadow: none;
+    }
+    @include breakpoint(mobile) {
+      max-width: 287px;
+      min-height: 34px;
+      margin: 0 auto;
+    }
+  }
+
+  .option-field {
+    display: flex;
+  }
+
+  .number-heading {
+    color: $primary;
+    font-size: 12px;
+    margin: 0.5rem;
+  }
+}
+
+.search-input {
+  background-color: $primary !important;
+  font-size: 12px;
+  font-weight: 700;
+  color: $white !important;
+  border: 1px solid rgba(255, 255, 255, 0);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  &::placeholder {
+    color: $white;
+  }
+  &::-webkit-input-placeholder {
+    color: $white;
+  }
+  &:-ms-input-placeholder {
+    color: $white;
+  }
+}
+.search-form-group {
+  position: relative;
+}
+.search-icon {
+  position: absolute;
+  color: $white !important;
+  right: 16px;
+  top: 10px;
+}
+.add_more_option {
+  max-width: 208px;
+  max-height: 33px;
+  margin-bottom: 0.5rem;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #dedede;
+  color: $primary;
+}
+input:focus-visible {
+  outline: none;
+}
+.edit-option-input {
+  margin-bottom: 10px;
+}
+.form-check-input:checked {
+  background-color: #4d8481;
+  border-color: #4d8481;
+}
+.not-found-section {
+  .not-found-text {
+    text-align: center;
+    padding: 1rem 0rem;
+    font-weight: 600;
+  }
+}
+/** Intake Information Page Detail Container end **/
