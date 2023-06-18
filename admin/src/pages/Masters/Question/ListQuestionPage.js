@@ -69,16 +69,7 @@ const ListQuestionPage = ({ t }) => {
     { value: 1, label: `${t('page.active_status_name')}` },
     { value: 2, label: `${t('page.in_active_status_name')}` },
   ];
-  /**
-   * Default Options for Question types
-   */
-  const optionType = [
-    { value: '', label: `${t('page.question_type_select_label')}` },
-    { value: 1, label: `${t('page.question_type_intake')}` },
-    { value: 2, label: `${t('page.question_type_business')}` },
-    { value: 5, label: `${t('page.question_type_patient_register')}` },
-    { value: 6, label: `${t('page.question_type_patient_insurance')}` },
-  ];
+
   /**
    * Default Options for Options Questions types
    */
@@ -260,32 +251,6 @@ const ListQuestionPage = ({ t }) => {
       disableSortBy: true,
     },
     {
-      Header: `${t('page.question_type_label')}`,
-      accessor: 'type',
-      disableSortBy: true,
-      Cell: ({ value: initialValue }) => {
-        if (initialValue === 1) return <Badge bg="primary">{t('page.question_type_intake')}</Badge>;
-        else if (initialValue === 2)
-          return <Badge bg="success">{t('page.question_type_business')}</Badge>;
-        else if (initialValue === 3)
-          return (
-            <Badge bg="warning" text="dark">
-              {t('page.question_type_formulary')}
-            </Badge>
-          );
-        else if (initialValue === 4)
-          return <Badge bg="info">{t('page.question_type_checkout')}</Badge>;
-        else if (initialValue === 5)
-          return <Badge bg="info">{t('page.question_type_patient_register')}</Badge>;
-        else if (initialValue === 6)
-          return (
-            <Badge bg="warning" text="dark">
-              {t('page.question_type_patient_insurance')}
-            </Badge>
-          );
-      },
-    },
-    {
       Header: `${t('page.question_question_type_label')}`,
       accessor: 'question_type',
       disableSortBy: true,
@@ -448,17 +413,6 @@ const ListQuestionPage = ({ t }) => {
       <Row>
         <Col lg={12}>
           <div className="filter">
-            <Form.Group className="filter-field-space">
-              <Select
-                className="filter-column"
-                options={optionType}
-                value={optionType.filter((option) => option.value === selectedType)}
-                onChange={(selectedOption) => {
-                  setSelectedType(selectedOption.value);
-                  setCurrentPage(1);
-                }}
-              />
-            </Form.Group>
             <Form.Group className="filter-field-space">
               <Select
                 className="filter-column"

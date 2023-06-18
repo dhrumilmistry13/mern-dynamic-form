@@ -1,13 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import NointernetPage from 'assets/images/No internet-vector.png';
 import 'assets/scss/page/_notfound.scss';
 import { Container, Navbar } from 'react-bootstrap';
 
 import { TNButton } from './TNButton';
-import { settingData } from 'store/features/settingSlice';
+// import { settingData } from 'store/features/settingSlice';
 export default function NoInternetPage() {
-  const getSettingData = useSelector(settingData);
+  // const getSettingData = useSelector(settingData);
 
   /**
     This function will call on Try again button and will reload page
@@ -21,7 +21,7 @@ export default function NoInternetPage() {
         <Container fluid className="container-section">
           <Navbar.Brand className="dashboard-logo">
             <img
-              src={getSettingData.home_page_general_header_logo}
+              // src={getSettingData.home_page_general_header_logo}
               alt="dashboardlogo"
               className="nav-brand"
             />

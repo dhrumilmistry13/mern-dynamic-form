@@ -4,9 +4,7 @@ import thunkMiddleware from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import AuthSlice from './features/authSlice';
 import loaderReducer from './features/loaderSlice';
-import settingReducer from './features/settingSlice';
 
 /**
  * Creating persist and setting key, and data
@@ -21,9 +19,7 @@ const persistConfig = {
  * Combinining multiple reducers
  */
 const rootReducer = combineReducers({
-  user: AuthSlice,
   loader: loaderReducer,
-  setting: settingReducer,
 });
 
 const middlewares = [thunkMiddleware];
