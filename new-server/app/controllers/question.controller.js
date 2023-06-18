@@ -3,12 +3,6 @@ const Question = db.question;
 
 // Create and Save a new Question
 exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.title) {
-    res.status(400).send({ message: "Content can not be empty!" });
-    return;
-  }
-
   // Create a question
   const question = new Question({
     question: req.body.question,
@@ -35,9 +29,9 @@ exports.create = (req, res) => {
 
 // Retrieve all Question from the database.
 exports.findAll = (req, res) => {
-    // const title = req.query.title;
-    // var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
-    var condition = {};
+    const question = req.query.question;
+    var condition = question ? { question: { $regex: new RegExp(question), $options: "i" } } : {};
+    // var condition = {};
     Question.find(condition)
       .then(data => {
         res.send(data);
@@ -113,4 +107,23 @@ exports.delete = (req, res) => {
           message: "Could not delete Question with id=" + id
         });
       });
+};
+
+// Question Satus Update with the specified id in the request
+exports.statusUpdate = (req, res) => {
+  const id = req.params.id;
+
+  Question.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+        .then(data => {
+          if (!data) {
+            res.status(404).send({
+              message: `Cannot update Question with id=${id}. Maybe Question was not found!`
+            });
+          } else res.send({ message: "Question was updated successfully." });
+        })
+        .catch(err => {
+          res.status(500).send({
+            message: "Error updating Question with id=" + id
+          });
+        });
 };

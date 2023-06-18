@@ -20,25 +20,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 require("./app/routes/tutorial.routes")(app);
+require("./app/routes/question.routes")(app);
+
 
 // simple route
 app.get("/test", (req, res) => {
     res.json({ message: "Welcome to bezkoder application." });
   });
-
-//   const db = require("./app/models");
-//   db.mongoose
-//     .connect(db.url, {
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true
-//     })
-//     .then(() => {
-//       console.log("Connected to the database!");
-//     })
-//     .catch(err => {
-//       console.log("Cannot connect to the database!", err);
-//       process.exit();
-//     });
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
