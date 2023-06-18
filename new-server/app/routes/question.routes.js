@@ -17,6 +17,9 @@ module.exports = app => {
   
     // Delete a Question with id
     router.delete("/:id", question.delete);
+    
+    // Update Question Status
+    router.post("/update-status/:id", question.statusUpdate);
   
     app.use('/api/question', router);
   };
