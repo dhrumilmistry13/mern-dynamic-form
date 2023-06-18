@@ -24,7 +24,7 @@ require("./app/routes/question.routes")(app);
 
 
 // simple route
-app.get("/", (req, res) => {
+app.get("/test", (req, res) => {
     res.json({ message: "Welcome to bezkoder application." });
   });
 

@@ -2,14 +2,14 @@ import React from 'react';
 import Errorpage from 'assets/images/404-page.png';
 import PropTypes from 'prop-types';
 import { Container, Navbar } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { TNButton } from './TNButton';
-import { settingData } from 'store/features/settingSlice';
+// import { settingData } from 'store/features/settingSlice';
 import 'assets/scss/page/_notfound.scss';
 const PageNotFound = (props) => {
-  const getSettingData = useSelector(settingData);
+  // const getSettingData = useSelector(settingData);
   const navigate = useNavigate();
 
   /**
@@ -24,7 +24,7 @@ const PageNotFound = (props) => {
         <Container fluid className="container-section">
           <Navbar.Brand className="dashboard-logo">
             <img
-              src={getSettingData.home_page_general_header_logo}
+              // src={getSettingData.home_page_general_header_logo}
               alt="dashboardlogo"
               className="nav-brand"
             />
