@@ -108,3 +108,22 @@ exports.delete = (req, res) => {
         });
       });
 };
+
+// Question Satus Update with the specified id in the request
+exports.statusUpdate = (req, res) => {
+  const id = req.params.id;
+
+  Question.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+        .then(data => {
+          if (!data) {
+            res.status(404).send({
+              message: `Cannot update Question with id=${id}. Maybe Question was not found!`
+            });
+          } else res.send({ message: "Question was updated successfully." });
+        })
+        .catch(err => {
+          res.status(500).send({
+            message: "Error updating Question with id=" + id
+          });
+        });
+};
