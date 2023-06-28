@@ -5,9 +5,6 @@ let validationSchema = Yup.object({
     .required('page.admin_question_label_validation_required')
     .min(1, 'page.admin_question_label_validation_min')
     .max(255, 'page.admin_question_label_validation_max'),
-  type: Yup.string('page.admin_question_type_validation_required').required(
-    'page.admin_question_type_validation_required'
-  ),
   question_type: Yup.string('page.admin_question_question_type_validation_required').required(
     'page.admin_question_question_type_validation_required'
   ),

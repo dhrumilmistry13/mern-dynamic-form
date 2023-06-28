@@ -63,7 +63,7 @@ const Sidebar = (props) => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/question/list" onClick={props.toggleClass}>
+                <NavLink to="/" onClick={props.toggleClass}>
                   <span>
                     <svg
                       width="24"

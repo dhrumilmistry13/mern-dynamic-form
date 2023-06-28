@@ -10,26 +10,36 @@ class QuestionService {
     const fromDate = request.queryKey[6];
     const toDate = request.queryKey[7];
     return client.get(
-      `/admin/question/list?page=${page_no}&serach_text=${searchText}&status=${status}&type=${type}&question_type=${question_type}&from_date=${fromDate}&to_date=${toDate}`,
+      `/question?page=${page_no}&serach_text=${searchText}&status=${status}&type=${type}&question_type=${question_type}&from_date=${fromDate}&to_date=${toDate}`,
       request
     );
   }
   static addQuestion(request) {
-    return client.put(`/admin/question/add`, request);
+    return client.post(`/question`, request);
   }
   static viewQuestion(params) {
-    return client.get(`/admin/question/get`, { params });
+    console.log(params.question_id);
+    return client.get(`/question/${params.question_id}`);
   }
 
   static updateQuestion(request) {
-    return client.put(`/admin/question/edit`, request);
+    return client.put(`/question/${request.question_id}`, request);
   }
   static deleteQuestion(params) {
-    return client.delete(`/admin/question/delete/question`, { params });
+    return client.delete(`/question/${params.question_id}`);
   }
 
   static updateStatusQuestion(request) {
-    return client.put(`/admin/question/update-status/`, request);
+    return client.post(`/question/update-status/${request.question_id}`, {
+      status: request.status,
+    });
+  }
+
+  static getActiveQuestion() {
+    return client.get(`/question/active`);
+  }
+  static storeQuestionData(request) {
+    return client.post(`/question/submit-question`, request);
   }
 }
 export { QuestionService };

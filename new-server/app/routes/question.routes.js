@@ -9,6 +9,8 @@ module.exports = app => {
     // Retrieve all question
     router.get("/", question.findAll);
   
+    router.get("/active", question.getAllActiveQuestion);
+
     // Retrieve a single Question with id
     router.get("/:id", question.findOne);
   
@@ -20,6 +22,9 @@ module.exports = app => {
     
     // Update Question Status
     router.post("/update-status/:id", question.statusUpdate);
+    
+    // Update Question Status
+    router.post("/submit-question", question.saveQuestionData);
   
     app.use('/api/question', router);
   };

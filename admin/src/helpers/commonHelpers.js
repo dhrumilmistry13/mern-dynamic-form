@@ -17,7 +17,27 @@ const defaultValue = (option, value) => {
       : '';
   }
 };
+const dateStringConvertDate = (date) => {
+  if (!date) return '';
+  let objectDate = new Date(date);
+  let day = objectDate.getDate();
+  console.log(day); // 23
 
+  let month = objectDate.getMonth() + 1;
+  console.log(month + 1); // 8
+
+  let year = objectDate.getFullYear();
+  console.log(year);
+  if (day < 10) {
+    day = '0' + day;
+  }
+
+  if (month < 10) {
+    month = `0${month}`;
+  }
+
+  return `${year}-${month}-${day}`;
+};
 /**
     This function will format a date by date month and year of 4 digits
 */
@@ -58,4 +78,5 @@ export {
   defaultTimeFormate,
   defaultDateFormate,
   encryptValues,
+  dateStringConvertDate,
 };
