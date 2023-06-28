@@ -5,4 +5,6 @@ export {
   useUpdateQuestion,
   useViewQuestion,
   useQuestionDelete,
+  useGetActiveQuestion,
+  useStoreBasicQuestionData,
 } from './useRQQuestion';

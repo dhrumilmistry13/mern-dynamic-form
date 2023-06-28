@@ -12,7 +12,7 @@ const PagesRoutes = ({ t }) => {
     <Router basename={'/'}>
       <Routes>
         {/* Question Master Routes  */}
-        <Route path="/question/*" element={<QuestionRoutes t={t} />} />
+        <Route path="/*" element={<QuestionRoutes t={t} />} />
       </Routes>
     </Router>
   );

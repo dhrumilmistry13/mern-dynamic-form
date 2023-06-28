@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Form, Row, Col, Button, Badge } from 'react-bootstrap';
+import { Form, Row, Col, Button, Badge, Container } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,13 +7,10 @@ import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { confirmAlert } from 'react-confirm-alert';
 import { toast } from 'react-toastify';
 import Select from 'react-select';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 
-import moment from 'moment';
-import { TNBreadCurm, TNButton, TNTable } from 'common/components';
+import { TNButton, TNTable } from 'common/components';
 import { useListQuestion, useQuestionDelete, useQuestionStatusChange } from 'hooks';
-import { dateFormatCommon, setFormatDate } from 'helpers';
+import { setFormatDate } from 'helpers';
 
 const ListQuestionPage = ({ t }) => {
   const navigate = useNavigate();
@@ -47,20 +44,7 @@ const ListQuestionPage = ({ t }) => {
       ? JSON.parse(localStorage.adminQuestionTable).selectedQuestionType
       : ''
   );
-  const [fromDate, setFromDate] = useState(
-    localStorage.adminOrganisationTable !== undefined &&
-      localStorage.adminOrganisationTable !== '' &&
-      JSON.parse(localStorage.adminOrganisationTable).fromDate !== ''
-      ? new Date(JSON.parse(localStorage.adminOrganisationTable).fromDate)
-      : ''
-  );
-  const [toDate, setToDate] = useState(
-    localStorage.adminOrganisationTable !== undefined &&
-      localStorage.adminOrganisationTable !== '' &&
-      JSON.parse(localStorage.adminOrganisationTable).toDate !== ''
-      ? new Date(JSON.parse(localStorage.adminOrganisationTable).toDate)
-      : ''
-  );
+
   /**
    * Default options for status
    */
@@ -104,19 +88,9 @@ const ListQuestionPage = ({ t }) => {
       selectedStatus: selectedStatus,
       selectedType: selectedType,
       selectedQuestionType: selectedQuestionType,
-      fromDate: fromDate,
-      toDate: toDate,
     };
     localStorage.adminQuestionTable = JSON.stringify(adminQuestionTable);
-  }, [
-    currentPage,
-    searchText,
-    selectedStatus,
-    selectedType,
-    selectedQuestionType,
-    fromDate,
-    toDate,
-  ]);
+  }, [currentPage, searchText, selectedStatus, selectedType, selectedQuestionType]);
   /**
    * This will clear all state values, and localstorage as well
    */
@@ -128,31 +102,28 @@ const ListQuestionPage = ({ t }) => {
     setSelectedQuestionType('');
     localStorage.removeItem('adminQuestionTable');
   };
-  const clearDateFilter = () => {
-    setFromDate('');
-    setToDate('');
-    setCurrentPage(1);
-  };
+
   /**
    * !This Function will call when user clicks on Edit Button
    * @param {*} tdata which is current element of button
    */
   const handleEditClick = (tdata) => {
     let question_id = tdata.currentTarget.getAttribute('question_id');
-    navigate(`/question/edit/${question_id}`);
+    navigate(`/edit/${question_id}`);
   };
   /**
    * !This Function will call when user clicks on View Button
    */
   const handleViewClick = (tdata) => {
     let question_id = tdata.currentTarget.getAttribute('question_id');
-    navigate(`/question/view/${question_id}`);
+    navigate(`/view/${question_id}`);
   };
   /**
    * This function will call on status click, and will display alert,
    * and will call status update API after confirmation
    */ const handleStatusClick = (tdata) => {
     let question_id = tdata.currentTarget.getAttribute('data-question_id');
+    let status = tdata.currentTarget.getAttribute('data-status');
     confirmAlert({
       customUI: ({ onClose }) => {
         return (
@@ -169,7 +140,7 @@ const ListQuestionPage = ({ t }) => {
               <Button
                 className="table-delete-button"
                 onClick={() => {
-                  doQuestionStatus({ question_id });
+                  doQuestionStatus({ question_id, status });
                   setCurrentPage(1);
                   onClose();
                 }}>
@@ -239,7 +210,7 @@ const ListQuestionPage = ({ t }) => {
   const columnsjson = [
     {
       Header: `${t('page.question_created_at')}`,
-      accessor: 'created_at',
+      accessor: 'createdAt',
       disableSortBy: true,
       Cell: ({ value: initialValue }) => {
         return setFormatDate(initialValue);
@@ -247,7 +218,7 @@ const ListQuestionPage = ({ t }) => {
     },
     {
       Header: `${t('page.question_label_label')}`,
-      accessor: 'label',
+      accessor: 'question',
       disableSortBy: true,
     },
     {
@@ -289,10 +260,11 @@ const ListQuestionPage = ({ t }) => {
         return (
           <div>
             <span
-              className={row.original.status === 1 ? 'status-active' : 'status-inactive'}
-              data-question_id={row.original.question_id}
+              className={row.original.status ? 'status-active' : 'status-inactive'}
+              data-question_id={row.original.id}
+              data-status={row.original.status ? 2 : 1}
               onClick={handleStatusClick.bind(this)}>
-              {t(initialValue === 1 ? 'page.active_status_name' : 'page.in_active_status_name')}
+              {t(initialValue ? 'page.active_status_name' : 'page.in_active_status_name')}
             </span>
           </div>
         );
@@ -300,7 +272,7 @@ const ListQuestionPage = ({ t }) => {
     },
     {
       Header: `${t('page.action_column')}`,
-      accessor: 'question_id',
+      accessor: 'id',
       Cell: ({ value: initialValue }) => {
         return (
           <div className="action_btn">
@@ -333,15 +305,7 @@ const ListQuestionPage = ({ t }) => {
    * !This API will call while Page Load and set data. Once data load we are updating State
    */
   const { refetch } = useListQuestion(
-    [
-      currentPage,
-      searchText,
-      selectedStatus,
-      selectedType,
-      selectedQuestionType,
-      fromDate !== '' ? moment(fromDate).format('YYYY-MM-DD') : '',
-      toDate !== '' ? moment(toDate).format('YYYY-MM-DD') : '',
-    ],
+    [currentPage, searchText, selectedStatus, selectedType, selectedQuestionType],
     (res) => {
       setData(res.data.question_list);
       setPaginationData(res.data.pagination);
@@ -369,21 +333,14 @@ const ListQuestionPage = ({ t }) => {
    * This function will call on Add Question button and will take user to the add page of Formulary
    */
   const addQuestion = () => {
-    navigate('/question/add');
+    navigate('/add');
   };
-  /**
-   * BreadCum labels and links
-   */
-  const breadcurmArray = [
-    {
-      label: t('page.question_list_label'),
-      link: '/question/list',
-      active: '',
-    },
-  ];
+  const submitQuestion = () => {
+    navigate('/submit');
+  };
+
   return (
-    <>
-      <TNBreadCurm breadcurmArray={breadcurmArray} />
+    <Container>
       <Row>
         <Col lg={12}>
           <div className="filter">
@@ -396,23 +353,6 @@ const ListQuestionPage = ({ t }) => {
                 className="filter-column form-field"
               />
             </Form.Group>
-            <Button
-              type="button"
-              onClick={handleClearFilter}
-              className="secondary-remove-button filter-field-space ml-0">
-              {t('page.cancel_search_button')}
-            </Button>
-            <div className="table-add-button filter-field-space">
-              <TNButton loading={false} type="button" onClick={addQuestion}>
-                {t('page.question_add_button')}
-              </TNButton>
-            </div>
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col lg={12}>
-          <div className="filter">
             <Form.Group className="filter-field-space">
               <Select
                 className="filter-column"
@@ -439,64 +379,22 @@ const ListQuestionPage = ({ t }) => {
                 }}
               />
             </Form.Group>
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col lg={12}>
-          <div className="filter">
-            <Form.Label className="field-label date-picker-label">
-              {t('page.organisation_from_date_label')}
-            </Form.Label>
-            <Form.Group className="filter-field-space">
-              <DatePicker
-                onKeyDown={(e) => {
-                  e.preventDefault();
-                }}
-                dropdownMode="select"
-                showMonthDropdown
-                showYearDropdown
-                adjustDateOnChange
-                className="form-control filter-column"
-                placeholderText={dateFormatCommon().toUpperCase()}
-                selected={fromDate}
-                dateFormat={dateFormatCommon()}
-                onChange={(date) => {
-                  setFromDate(date);
-                  setCurrentPage(1);
-                }}
-                maxDate={toDate !== '' && toDate !== undefined ? toDate : new Date()}
-              />
-            </Form.Group>
-            <Form.Label className="field-label date-picker-label">
-              {t('page.organisation_to_date_label')}
-            </Form.Label>
-            <Form.Group className="filter-field-space">
-              <DatePicker
-                onKeyDown={(e) => {
-                  e.preventDefault();
-                }}
-                dropdownMode="select"
-                showMonthDropdown
-                showYearDropdown
-                adjustDateOnChange
-                className="form-control filter-column"
-                placeholderText={dateFormatCommon().toUpperCase()}
-                minDate={fromDate}
-                selected={toDate}
-                dateFormat={dateFormatCommon()}
-                onChange={(date) => {
-                  setToDate(date);
-                  setCurrentPage(1);
-                }}
-              />
-            </Form.Group>
             <Button
               type="button"
-              onClick={clearDateFilter}
+              onClick={handleClearFilter}
               className="secondary-remove-button filter-field-space ml-0">
-              {t('page.clear_date_search_button')}
+              {t('page.cancel_search_button')}
             </Button>
+            <div className="table-add-button filter-field-space">
+              <TNButton loading={false} type="button" onClick={addQuestion}>
+                {t('page.question_add_button')}
+              </TNButton>
+            </div>
+            <div className="table-add-button filter-field-space">
+              <TNButton loading={false} type="button" onClick={submitQuestion}>
+                Submit Question Form
+              </TNButton>
+            </div>
           </div>
         </Col>
       </Row>
@@ -510,7 +408,7 @@ const ListQuestionPage = ({ t }) => {
         pageIndexGet={currentPage - 1}
         key={Math.floor(Math.random() * (1000 - 1 + 1) + 1)}
       />
-    </>
+    </Container>
   );
 };
 ListQuestionPage.propTypes = {

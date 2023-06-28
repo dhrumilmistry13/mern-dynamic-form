@@ -13,7 +13,6 @@ const ViewQuestionPage = ({ t }) => {
 
   // Initial Values
   let initialValues = {
-    type: '',
     question_type: '',
     is_required: '',
     sequence: 0,
@@ -27,8 +26,7 @@ const ViewQuestionPage = ({ t }) => {
   const { isLoading: isLoadingData, data: question_data } = useViewQuestion(question_id);
   if (!isLoadingData && question_data) {
     initialValues = {
-      label: question_data.data.label,
-      type: question_data.data.type,
+      label: question_data.data.question,
       question_type: question_data.data.question_type,
       is_required: question_data.data.is_required,
       sequence: question_data.data.sequence,
@@ -47,16 +45,6 @@ const ViewQuestionPage = ({ t }) => {
     { value: '', label: `${t('page.select_status')}` },
     { value: 1, label: `${t('page.active_status_name')}` },
     { value: 2, label: `${t('page.in_active_status_name')}` },
-  ];
-  /**
-   * Default Options for Question types
-   */
-  const optionType = [
-    { value: '', label: `${t('page.question_type_select_label')}` },
-    { value: 1, label: `${t('page.question_type_intake')}` },
-    { value: 2, label: `${t('page.question_type_business')}` },
-    { value: 5, label: `${t('page.question_type_patient_register')}` },
-    { value: 6, label: `${t('page.question_type_patient_insurance')}` },
   ];
   /**
    * Default Options for Options Questions types
@@ -86,7 +74,7 @@ const ViewQuestionPage = ({ t }) => {
   const breadcurmArray = [
     {
       label: t('page.question_list_label'),
-      link: '/question/list',
+      link: '/',
       active: '',
     },
     {
@@ -99,7 +87,7 @@ const ViewQuestionPage = ({ t }) => {
    * This function will call on cancel button click, and user will be redirected to teh listing page
    */
   const handleCancel = () => {
-    navigate(`/question/list`);
+    navigate(`/`);
   };
   return (
     <>
@@ -126,19 +114,6 @@ const ViewQuestionPage = ({ t }) => {
             <Col lg={6} md={12} sm={12}>
               <Row>
                 <Col lg={6} xs={6}>
-                  <Form.Label className="field-label">{t('page.question_type_label')}</Form.Label>
-                </Col>
-                <Col lg={1} xs={1}>
-                  :
-                </Col>
-                <Col lg={5} xs={5}>
-                  <span>{defaultValue(optionType, initialValues.type).label}</span>
-                </Col>
-              </Row>
-            </Col>
-            <Col lg={6} md={12} sm={12}>
-              <Row>
-                <Col lg={6} xs={6}>
                   <Form.Label className="field-label">
                     {t('page.question_question_type_label')}
                   </Form.Label>
@@ -151,8 +126,6 @@ const ViewQuestionPage = ({ t }) => {
                 </Col>
               </Row>
             </Col>
-          </Row>
-          <Row>
             <Col lg={6} md={12} sm={12}>
               <Row>
                 <Col lg={6} xs={6}>
@@ -164,10 +137,14 @@ const ViewQuestionPage = ({ t }) => {
                   :
                 </Col>
                 <Col lg={5} xs={5}>
-                  <span>{defaultValue(optionsRquired, initialValues.is_required).label}</span>
+                  <span>
+                    {defaultValue(optionsRquired, initialValues.is_required ? 1 : 2).label}
+                  </span>
                 </Col>
               </Row>
             </Col>
+          </Row>
+          <Row>
             <Col lg={6} md={12} sm={12}>
               <Row>
                 <Col lg={6} xs={6}>
@@ -177,12 +154,10 @@ const ViewQuestionPage = ({ t }) => {
                   :
                 </Col>
                 <Col lg={5} xs={5}>
-                  <span>{defaultValue(options, initialValues.status).label}</span>
+                  <span>{defaultValue(options, initialValues.status ? 1 : 2).label} </span>
                 </Col>
               </Row>
             </Col>
-          </Row>
-          <Row>
             <Col lg={6} md={12} sm={12}>
               <Row>
                 <Col lg={6} xs={6}>

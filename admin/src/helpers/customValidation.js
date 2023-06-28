@@ -1,6 +1,8 @@
 import * as Yup from 'yup';
-Yup.addMethod(Yup.string, 'phonecheck', function (errorMessage) {
+
+Yup.addMethod(Yup.string, 'contactcheck', function (errorMessage) {
   return this.test(`test-phone`, errorMessage, function (value) {
+    // const phoneRegExp = /^\d{7,13}?$/;
     const phoneRegExp = /^\d{10}?$/;
     if (value && value.length > 0) {
       return phoneRegExp.test(value);
@@ -8,48 +10,27 @@ Yup.addMethod(Yup.string, 'phonecheck', function (errorMessage) {
     return true;
   });
 });
+Yup.addMethod(Yup.string, 'otplength', function (errorMessage) {
+  return this.test(`otp-length`, errorMessage, function (value) {
+    const { path, createError } = this;
+    return (value && value.length === 6) || createError({ path, message: errorMessage });
+  });
+});
+Yup.addMethod(Yup.array, 'optionRequired', function (message, mapper = (a) => a.is_new == 2) {
+  return this.test('optionRequired', message, function (list) {
+    return new Set(list.filter(mapper)).size !== 0;
+  });
+});
 Yup.addMethod(Yup.mixed, 'file_type', function (errorMessage) {
   return this.test(`test-file_type`, errorMessage, function (value) {
-    if (typeof value === 'string') {
-      return true;
-    }
-    const isValid = ['image/jpg', 'image/jpeg', 'image/png'];
+    const isValid = ['jpg', 'jpeg', 'png', 'pdf'];
     if (value !== undefined) {
-      return value && isValid.includes(value.type);
-    }
-  });
-});
-Yup.addMethod(Yup.mixed, 'multiplefilecheck', function (errorMessage) {
-  return this.test(`test-multiplefilecheck`, errorMessage, function (value) {
-    const isValid = ['image/jpg', 'image/jpeg', 'image/png'];
-    const checkarr = [];
-    for (let key in value) {
-      if (value[key].image !== undefined && typeof value[key].image === 'string') {
-        checkarr.push(true);
-      } else {
-        checkarr.push(value && isValid.includes(value[key].type));
+      const url = new URL(value);
+      const type = value.split(';')[0].split('/')[1];
+      if ((!type && url.protocol === 'https:') || url.protocol === 'http:') {
+        return true;
       }
-    }
-    if (checkarr.filter((item, i, ar) => ar.indexOf(item) === i).length > 1) {
-      return false;
-    }
-    return true;
-  });
-});
-Yup.addMethod(Yup.string, 'maxlength', function (errorMessage) {
-  return this.test(`text-maxlength`, errorMessage, function (value) {
-    if (value > 999 || value < 0) {
-      return false;
-    } else {
-      return true;
-    }
-  });
-});
-Yup.addMethod(Yup.string, 'priceValidation', function (errorMessage) {
-  return this.test(`test-priceValidation`, errorMessage, function (value) {
-    const priceValidationRegExp = /^\d{1,3}(\.\d{1,8})?$/;
-    if (value && value.length > 0) {
-      return priceValidationRegExp.test(value);
+      return value && isValid.includes(type);
     }
     return true;
   });

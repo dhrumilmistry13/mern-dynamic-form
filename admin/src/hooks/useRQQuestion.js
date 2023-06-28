@@ -53,6 +53,19 @@ const useQuestionDelete = (onSuccess, onError = onDefaultError) => {
     onError,
   });
 };
+const useGetActiveQuestion = (onSuccess, onError = onDefaultError) => {
+  return useQuery(['question-active-list'], QuestionService.getActiveQuestion, {
+    onSuccess,
+    keepPreviousData: true,
+    onError,
+  });
+};
+const useStoreBasicQuestionData = (onSuccess, onError = onDefaultError) => {
+  return useMutation(QuestionService.storeQuestionData, {
+    onSuccess,
+    onError,
+  });
+};
 export {
   useListQuestion,
   useAddQuestion,
@@ -60,4 +73,6 @@ export {
   useUpdateQuestion,
   useViewQuestion,
   useQuestionDelete,
+  useGetActiveQuestion,
+  useStoreBasicQuestionData,
 };
