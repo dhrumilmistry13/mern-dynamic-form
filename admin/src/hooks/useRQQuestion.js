@@ -66,6 +66,29 @@ const useStoreBasicQuestionData = (onSuccess, onError = onDefaultError) => {
     onError,
   });
 };
+
+const useGetFormListData = (
+  [page_no, searchText, status, type, question_type, fromDate, toDate],
+  onSuccess,
+  onError = onDefaultError
+) => {
+  return useQuery(
+    ['form-list', page_no, searchText, status, type, question_type, fromDate, toDate],
+    QuestionService.getFormList,
+    {
+      onSuccess,
+      keepPreviousData: true,
+      onError,
+    }
+  );
+};
+
+const useViewFormData = (form_id, onSuccess, onError = onDefaultError) => {
+  return useQuery('form-view', () => QuestionService.viewFormData({ form_id }), {
+    onSuccess,
+    onError,
+  });
+};
 export {
   useListQuestion,
   useAddQuestion,
@@ -75,4 +98,6 @@ export {
   useQuestionDelete,
   useGetActiveQuestion,
   useStoreBasicQuestionData,
+  useGetFormListData,
+  useViewFormData,
 };

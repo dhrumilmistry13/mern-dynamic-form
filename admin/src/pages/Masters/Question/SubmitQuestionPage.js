@@ -85,6 +85,7 @@ const SubmitQuestionPage = () => {
                   <Row>
                     <FieldArray name="friends">
                       {() =>
+                        values.answers &&
                         values.answers.length > 0 &&
                         values.answers.map((answer, index) => {
                           const questionOPErrors = errors?.answers?.[index]?.ans_val || '';
@@ -174,6 +175,9 @@ const SubmitQuestionPage = () => {
                                 <>
                                   <label>
                                     <span>{answer.question}</span>
+                                    <span className={answer.is_required ? 'text-danger' : ''}>
+                                      {answer.is_required ? ' *' : ''}
+                                    </span>
                                   </label>
                                   <input
                                     type="hidden"
@@ -227,6 +231,9 @@ const SubmitQuestionPage = () => {
                                 <>
                                   <label>
                                     <span>{answer.question}</span>
+                                    <span className={answer.is_required ? 'text-danger' : ''}>
+                                      {answer.is_required ? ' *' : ''}
+                                    </span>
                                   </label>
                                   <br></br>
                                   {answer.question_options &&
