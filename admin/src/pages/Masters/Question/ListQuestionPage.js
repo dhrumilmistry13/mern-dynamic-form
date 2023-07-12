@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Form, Row, Col, Button, Badge, Container } from 'react-bootstrap';
+import { Form, Row, Col, Button, Badge } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -338,11 +338,15 @@ const ListQuestionPage = ({ t }) => {
   const submitQuestion = () => {
     navigate('/submit');
   };
+  const formList = () => {
+    navigate('/form');
+  };
 
   return (
-    <Container>
+    <div className="container-fluid">
       <Row>
         <Col lg={12}>
+          <h1>{t('page.question_list_label')}</h1>
           <div className="filter">
             <Form.Group controlId="search" className="filter-field-space">
               <Form.Control
@@ -395,10 +399,14 @@ const ListQuestionPage = ({ t }) => {
                 Submit Question Form
               </TNButton>
             </div>
+            <div className="table-add-button filter-field-space">
+              <TNButton loading={false} type="button" onClick={formList}>
+                Form List
+              </TNButton>
+            </div>
           </div>
         </Col>
       </Row>
-      <h1>{t('page.question_list_label')}</h1>
       <TNTable
         columns={columns}
         data={data}
@@ -408,7 +416,7 @@ const ListQuestionPage = ({ t }) => {
         pageIndexGet={currentPage - 1}
         key={Math.floor(Math.random() * (1000 - 1 + 1) + 1)}
       />
-    </Container>
+    </div>
   );
 };
 ListQuestionPage.propTypes = {

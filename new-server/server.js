@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-// const db = require("./app/models");
 const app = express();
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
@@ -19,8 +18,8 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-require("./app/routes/tutorial.routes")(app);
 require("./app/routes/question.routes")(app);
+require("./app/routes/form.routes")(app);
 
 
 // simple route

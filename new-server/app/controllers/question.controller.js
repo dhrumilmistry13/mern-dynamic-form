@@ -7,10 +7,10 @@ exports.create = (req, res) => {
   // Create a question
   const question = new Question({
     question: req.body.label,
-    is_required: req.body.is_required,
+    is_required: req.body.is_required === 1 ? true : false,
     question_type: req.body.question_type,
     sequence: req.body.sequence,
-    status: req.body.status,
+    status: req.body.status === 1 ? true : false,
     question_options: req.body.question_options
   });
 
@@ -38,9 +38,9 @@ exports.findAll = async(req, res) => {
     }
     const q = Question.find(condition);
     let count = await q.count();
-    let last_page = Math.round(count/10);
-    last_page = !last_page ? 1 : last_page;
-    // var condition = {};
+    let last_page = count/10;
+    last_page = last_page % 10 === 0 ? Math.round(last_page) : Math.round(last_page)+1;
+
     Question.find(condition).skip((page-1)*10).limit(10)
       .then(data => {
         res.send({data:{
@@ -68,7 +68,6 @@ exports.findOne = (req, res) => {
         if (!data)
           res.status(404).send({ message: "Not found question with id " + id });
         else {
-          console.log(data);
           res.send({data: data, message: 'Question data fetch'});
         }
       })
@@ -88,7 +87,9 @@ exports.update = (req, res) => {
       }
     
       const id = req.params.id;
-    
+      req.body.status= req.body.status === 1 ? true : false;
+      req.body.is_requiredx= req.body.is_requiredx === 1 ? true : false;
+
       Question.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
         .then(data => {
           if (!data) {
@@ -112,7 +113,7 @@ exports.delete = (req, res) => {
       .then(data => {
         if (!data) {
           res.status(404).send({
-            message: `Cannot delete Question with id=${id}. Maybe Tutorial was not found!`
+            message: `Cannot delete Question with id=${id}. Maybe Question was not found!`
           });
         } else {
           res.send({
@@ -132,7 +133,6 @@ exports.statusUpdate = (req, res) => {
   const id = req.params.id;
   let status = req.body.status;
 status = status === "1" ? true: false;
-console.log(status);
   Question.findByIdAndUpdate(id, {status: status}, { useFindAndModify: false })
         .then(data => {
           if (!data) {
@@ -150,10 +150,9 @@ console.log(status);
 
 exports.getAllActiveQuestion = async(req, res) =>  {
   var condition = {status: true};
-  Question.find(condition)
+  Question.find(condition).sort({sequence:1})
     .then(data => {
       data = data.map((value, index)=>{
-        console.log(value);
         value.is_required = value.is_required ? 1 : 2;
         value.status = value.status ? 1 : 2;
         return value;
@@ -169,7 +168,6 @@ exports.getAllActiveQuestion = async(req, res) =>  {
 };
 
 exports.saveQuestionData = async(req, res)=>{
-  console.log(req.body);
   let timestamp = Date.now();
   time = Math.floor(timestamp/1000);
   const random_no = Math.floor(Math.random() * (999999 - 100000 + 1) + 100000)
@@ -177,14 +175,12 @@ exports.saveQuestionData = async(req, res)=>{
   req.body.answers.map((val, index)=>{
     val.form_id = form_name;
   })
-  console.log(req.body.answers);
   QuestionForm.insertMany(req.body.answers)
     .then(function(docs) {
       res.send({data:{success: true},message:"Question Submitted Successfully"});
 
     })
     .catch(function(err) {
-      console.log(err);
       res.send({data:{success:false},message:"Failed to Submit Question"});
     });
 }

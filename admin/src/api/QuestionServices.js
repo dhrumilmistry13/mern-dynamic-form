@@ -39,7 +39,15 @@ class QuestionService {
     return client.get(`/question/active`);
   }
   static storeQuestionData(request) {
-    return client.post(`/question/submit-question`, request);
+    return client.post(`/question-form/submit-question`, request);
+  }
+  static getFormList() {
+    return client.get(`/question-form`);
+  }
+
+  static viewFormData(params) {
+    console.log(params.form_id);
+    return client.get(`/question-form/${params.form_id}`);
   }
 }
 export { QuestionService };
